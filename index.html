@@ -17,40 +17,43 @@
         </div>
     </header>
 
-    <div class="user-input">
-        <div class="container row">
-            <div class="col user-input__box">
-                <label for="query">Query:</label>
-                <input type="text" name="query" id="query"><br>
+    <main style="">
+        <div class="user-input">
+            <div class="container row">
+                <div class="col user-input__box">
+                    <label for="query">Query:</label>
+                    <input type="text" name="query" id="query"><br>
 
-                <label for="departments">Choose a department:</label>
-                <select name="departments" id="departments" class="departments">
-                </select><br>
+                    <label for="departments">Choose a department:</label>
+                    <select name="departments" id="departments" class="departments">
+                    </select><br>
 
-                <div class="user-input__buttons">
-                    <button class="lucky-button" id="lucky-button">Random Pick</button>
-                    <button class="search-button" id="search-button">Search</button>
+                    <div class="user-input__buttons">
+                        <button class="lucky-button" id="lucky-button">Random Pick</button>
+                        <button class="search-button" id="search-button">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="object-list">
-        <div class="container row">
-            <div class="col object-list__box">
-                <ul class="object-list__items">
-                </ul>
+        <div class="object-list">
+            <div class="container row">
+                <div class="col object-list__box">
+                    <ul class="object-list__items">
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="object-info">
-        <div class="container row">
-            <div class="col object-info__box">
+        <div class="object-info">
+            <div class="container row">
+                <div class="col object-info__box">
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="loader" id="loader"></div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
