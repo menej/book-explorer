@@ -1,6 +1,6 @@
 class MuseumObject {
     constructor(
-        objectId,    // Identifying number for each artwork (unique for each)
+        objectID,    // Identifying number for each artwork (unique for each)
         title,       // Title, identifying phrase, or name given to a work of art
         objectName,  // Describes the physical type of the object
         medium,      // Refers to the materials that were used to create the artwork
@@ -16,7 +16,7 @@ class MuseumObject {
         reign,       // Reign of a monarch or ruler under which an object was created
 
         linkResource,       // URL to object's page on metmuseum.org
-        objectWikiData_URL, // Wikidata URL for the object
+        objectWikidata_URL, // Wikidata URL for the object
         primaryImage,       // URL to the primary image of an object in JPEG format
         primaryImageSmall,  // URL to the lower-res primary image of an object in JPEG format
         additionalImages,   // An array containing URLs to the additional images of an object in JPEG format
@@ -36,7 +36,7 @@ class MuseumObject {
         artistWikidata_URL, // Wikidata URL for the artist
     ) {
 
-        this.objectId = objectId;
+        this.objectID = objectID;
         this.title = title;
         this.objectName = objectName;
         this.culture = culture;
@@ -58,7 +58,7 @@ class MuseumObject {
         this.linkResource = linkResource;
         this.repository = repository;
         this.metadataDate = metadataDate;
-        this.objectWikiData_URL = objectWikiData_URL;
+        this.objectWikidata_URL = objectWikidata_URL;
         this.isHighlight = isHighlight;
         this.accessionYear = accessionYear;
         this.isPublicDomain = isPublicDomain;
@@ -68,3 +68,4 @@ class MuseumObject {
         this.department = department;
     }
 }
+
