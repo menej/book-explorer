@@ -5,6 +5,27 @@ const searchParam = "search";
 
 let searchHistory = [];
 
+
+// Spinner control functions
+function showLoadingSpinner(message = "") {
+    mainElement.classList.add("flex-center");
+    loaderContainer.style.display = "block";
+    userInputArea.hidden = true;
+    objectsList.hidden = true;
+    objectInfo.hidden = true;
+    loaderLabel.textContent = message;
+}
+
+function hideLoadingSpinner() {
+    mainElement.classList.remove("flex-center");
+    loaderContainer.style.display = 'none';
+    userInputArea.hidden = false;
+    objectsList.hidden = false;
+    objectInfo.hidden = false;
+    loaderLabel.textContent = "";
+}
+
+// Api services functions
 async function getObjectIds(departmentIds = []) {
 
     let parseUrl = `${apiUrl}/${objectsParam}`
@@ -49,10 +70,7 @@ async function getAllDepartments() {
     return allDepartments;
 }
 
-function displayNewMuseumObject() {
-
-}
-
+// Other functions
 function fillDepartmentsSelect(departmentsJson) {
     let departments = departmentsJson["departments"];
 
@@ -74,25 +92,7 @@ function fillDepartmentsSelect(departmentsJson) {
     hideLoadingSpinner();
 }
 
-function showLoadingSpinner(message = "") {
-    mainElement.classList.add("flex-center");
-    loaderContainer.style.display = "block";
-    userInputArea.hidden = true;
-    objectsList.hidden = true;
-    objectInfo.hidden = true;
-    loaderLabel.textContent = message;
-}
-
-function hideLoadingSpinner() {
-    mainElement.classList.remove("flex-center");
-    loaderContainer.style.display = 'none';
-    userInputArea.hidden = false;
-    objectsList.hidden = false;
-    objectInfo.hidden = false;
-    loaderLabel.textContent = "";
-}
-
-
+// Globals
 const queryInput = document.querySelector("#query");
 const departmentsSelect = document.querySelector("#departments");
 const luckyBtn = document.querySelector("#lucky-button");
@@ -107,4 +107,6 @@ const mainElement = document.querySelector("main");
 const loaderContainer = document.querySelector(".loader-container");
 const loaderLabel = document.querySelector(".loader-label");
 
-getAllDepartments().then(r => fillDepartmentsSelect(r))
+document.addEventListener("DOMContentLoaded", e => {
+    getAllDepartments().then(r => fillDepartmentsSelect(r))
+});
