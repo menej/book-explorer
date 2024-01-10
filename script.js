@@ -4,7 +4,7 @@ const departmentsParam = "departments";
 const searchParam = "search";
 
 
-async function getBookIds(departmentIds = []) {
+async function getObjectIds(departmentIds = []) {
 
     let parseUrl = `${apiUrl}/${objectsParam}`
     if (departmentIds.length) {
@@ -14,25 +14,25 @@ async function getBookIds(departmentIds = []) {
         }
     }
 
-    let allBooks = null;
+    let allObjects = null;
     try {
         const response = await fetch(parseUrl);
-        allBooks = await response.json();
+        allObjects = await response.json();
     } catch (e) {
         alert(e);
     }
-    return allBooks
+    return allObjects
 }
 
-async function getBookInfo(bookId) {
-    let bookInfo = null;
+async function getObjectInfo(objectId) {
+    let objectInfo = null;
     try {
-        const response = await fetch(`${apiUrl}/${objectsParam}/${bookId}`);
-        bookInfo = await response.json();
+        const response = await fetch(`${apiUrl}/${objectsParam}/${objectId}`);
+        objectInfo = await response.json();
     } catch (e) {
         alert(e);
     }
-    return bookInfo;
+    return objectInfo;
 }
 
 async function getAllDepartments() {
@@ -46,5 +46,4 @@ async function getAllDepartments() {
     return allDepartments;
 }
 
-
-
+getObjectInfo(100).then(r => console.log(r));
