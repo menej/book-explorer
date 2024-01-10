@@ -3,6 +3,7 @@ const objectsParam = "objects";
 const departmentsParam = "departments";
 const searchParam = "search";
 
+let searchHistory = [];
 
 async function getObjectIds(departmentIds = []) {
 
@@ -46,4 +47,38 @@ async function getAllDepartments() {
     return allDepartments;
 }
 
-getObjectInfo(100).then(r => console.log(r));
+function displayNewMuseumObject() {
+
+}
+
+function fillDepartmentsSelect(departmentsJson) {
+    let departments = departmentsJson["departments"];
+
+    departments = departments.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+    // Add all departments option
+    let option = document.createElement("option");
+    option.setAttribute("value", "-1");
+    option.textContent = "All departments";
+    departmentsSelect.appendChild(option);
+
+    // Fill with other departments options
+    for (const department of departments) {
+        let departmentOption = document.createElement("option");
+        departmentOption.setAttribute("value", department["departmentId"]);
+        departmentOption.textContent = department["displayName"];
+        departmentsSelect.appendChild(departmentOption);
+    }
+
+}
+
+
+const queryInput = document.querySelector("#query");
+const departmentsSelect = document.querySelector("#departments");
+const luckyBtn = document.querySelector("#lucky-button");
+const searchBtn = document.querySelector("#search-button");
+
+const objectsList = document.querySelector(".object-list__items");
+const objectInfo = document.querySelector(".object-info__box");
+
+getAllDepartments().then(r => fillDepartmentsSelect(r))
