@@ -37,7 +37,7 @@ async function getObjectInfo(objectId) {
 }
 
 async function getAllDepartments() {
-    showLoadingSpinner();
+    showLoadingSpinner("Preparing needed stuff");
 
     let allDepartments = null;
     try {
@@ -74,20 +74,22 @@ function fillDepartmentsSelect(departmentsJson) {
     hideLoadingSpinner();
 }
 
-function showLoadingSpinner() {
+function showLoadingSpinner(message = "") {
     mainElement.classList.add("flex-center");
-    loader.hidden = false;
+    loaderContainer.style.display = "block";
     userInputArea.hidden = true;
     objectsList.hidden = true;
     objectInfo.hidden = true;
+    loaderLabel.textContent = message;
 }
 
 function hideLoadingSpinner() {
     mainElement.classList.remove("flex-center");
-    loader.hidden = true;
+    loaderContainer.style.display = 'none';
     userInputArea.hidden = false;
     objectsList.hidden = false;
     objectInfo.hidden = false;
+    loaderLabel.textContent = "";
 }
 
 
@@ -100,8 +102,9 @@ const objectsList = document.querySelector(".object-list__items");
 const objectInfo = document.querySelector(".object-info__box");
 
 const userInputArea = document.querySelector(".user-input");
-const loader = document.querySelector(".loader");
 const mainElement = document.querySelector("main");
 
-getAllDepartments().then(r => fillDepartmentsSelect(r))
+const loaderContainer = document.querySelector(".loader-container");
+const loaderLabel = document.querySelector(".loader-label");
 
+getAllDepartments().then(r => fillDepartmentsSelect(r))

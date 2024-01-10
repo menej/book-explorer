@@ -22,15 +22,15 @@
             <div class="container row">
                 <div class="col user-input__box">
                     <label for="query">Query:</label>
-                    <input type="text" name="query" id="query"><br>
+                    <input type="text" name="query" id="query" class="query"><br>
 
-                    <label for="departments">Choose a department:</label>
+                    <label for="departments">Department:</label>
                     <select name="departments" id="departments" class="departments">
                     </select><br>
 
                     <div class="user-input__buttons">
-                        <button class="lucky-button" id="lucky-button">Random Pick</button>
                         <button class="search-button" id="search-button">Search</button>
+                        <button class="lucky-button" id="lucky-button">Random Pick</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,10 @@
             </div>
         </div>
 
-        <div class="loader" id="loader"></div>
+        <div class="loader-container">
+            <div class="loader" id="loader"></div>
+            <p class="loader-label"></p>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>

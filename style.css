@@ -12,6 +12,7 @@ body {
 }
 
 body {
+    font-size: 1.5rem;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -22,7 +23,9 @@ main {
 }
 
 input,
-select {
+select,
+button {
+    font-size: inherit;
     margin-bottom: 20px;
 }
 
@@ -55,12 +58,13 @@ select {
 .departments {
     min-width: 150px;
     width: auto;
+    margin-top: 1.2rem;
 }
 
 .logo {
     text-decoration: none;
     color: black;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
@@ -74,9 +78,11 @@ select {
     width: fit-content;
 }
 
+
 .user-input__buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 2rem;
 }
 
 .lucky-button,
@@ -85,7 +91,7 @@ select {
 }
 
 .object-list__box {
-    margin-top: 1em;
+    margin-top: 1rem;
 }
 
 .object-list__items {
@@ -102,11 +108,14 @@ select {
     animation: spin 2s linear infinite;
 }
 
-.loader-container {
-    display: flex;
-    max-height: 100%;
-    justify-content: center;
-    align-items: center;
+.loader,
+.loader-label {
+    margin: 0 auto;
+}
+
+.loader-label {
+    margin-top: 20px;
+    font-size: 2rem;
 }
 
 @keyframes spin {
