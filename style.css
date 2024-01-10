@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+input,
+select {
+    margin-bottom: 20px;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.col {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+}
+
+.header {
+    background-color: darkgray;
+    padding: 0.5em 0;
+}
+
+.departments {
+    min-width: 150px;
+    width: auto;
+}
+
+.logo {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.user-input {
+    margin-top: 1em;
+}
+
+.user-input__box {
+    border: 1px solid black;
+    padding: 1em;
+    width: fit-content;
+}
+
+.user-input__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lucky-button,
+.search-button {
+    padding: 0.25em 0.75em;
+}
+
+.object-list__box {
+    margin-top: 1em;
+}
+
+.object-list__items {
+    list-style: none;
+}
