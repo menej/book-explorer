@@ -8,12 +8,12 @@ let objectIdsCache = null;
 
 // Spinner control functions
 function showLoadingSpinner(message = "") {
-    mainElement.classList.add("flex-center");
-    loaderContainer.style.display = "block";
     userInputArea.hidden = true;
     objectsList.hidden = true;
     objectInfoBox.hidden = true;
     loaderLabel.textContent = message;
+    mainElement.classList.add("flex-center");
+    loaderContainer.style.display = "block";
 }
 
 function hideLoadingSpinner() {
@@ -93,6 +93,9 @@ function fillDepartmentsSelect(departmentsJson) {
 }
 
 async function showLuckyResult() {
+    // Remove all children
+    objectInfoBox.replaceChildren();
+
     if (objectIdsCache == null) {
         showLoadingSpinner("Fetching data about objects");
         objectIdsCache = await getObjectIds();
@@ -105,8 +108,6 @@ async function showLuckyResult() {
     let chosenId = objectIdsCache["objectIDs"][chosenIndex];
 
     let objectInfo = await getObjectInfo(chosenId);
-    console.log(objectInfo);
-    objectInfoBox.removeChild(objectInfoBox.firstChild);
 
     let museumObject = new MuseumObject(
         objectInfo.objectID, objectInfo.title, objectInfo.objectName, objectInfo.medium, objectInfo.dimensions,
@@ -116,15 +117,63 @@ async function showLuckyResult() {
         objectInfo.accessionYear, objectInfo.repository, objectInfo.metadataDate, objectInfo.isHighlight,
         objectInfo.isPublicDomain, objectInfo.artistDisplayName, objectInfo.artistDisplayBio,
         objectInfo.artistNationality, objectInfo.artistBeginDate, objectInfo.artistEndDate,
-        objectInfo.artistWikidata_URL
+        objectInfo.artistWikidata_URL, objectInfo.objectURL
     )
 
+    // Add title
+    let objectTitle = document.createElement("h2");
+    objectTitle.classList.add("object-info__object-title");
+    objectTitle.textContent = museumObject.title;
+
+    objectInfoBox.appendChild(objectTitle)
+
+    // Add image
     let objectImage = document.createElement("img");
-    objectImage.setAttribute("src", museumObject.primaryImage);
+    if (museumObject.primaryImage === "") {
+        objectImage.setAttribute("src", "/img/no-img-available.png");
+    } else {
+        objectImage.setAttribute("src", museumObject.primaryImage);
+    }
+    objectImage.classList.add("object-img--default")
+    objectImage.addEventListener("click", zoomImg);
 
     objectInfoBox.appendChild(objectImage);
 
+    // Add additional images
+    let additionalImgContainer = document.createElement("div");
+    additionalImgContainer.classList.add("object-info__additional-box");
+    for (const additionalImage of museumObject.additionalImages) {
+        let objectImage = document.createElement("img");
+        if (additionalImage === "") {
+            objectImage.setAttribute("src", "/img/no-img-available.png");
+        } else {
+            objectImage.setAttribute("src", additionalImage);
+        }
+        objectImage.classList.add("object-img--additional")
+
+        // On click image
+        objectImage.addEventListener("click", zoomImg);
+
+        additionalImgContainer.appendChild(objectImage);
+    }
+
+    objectInfoBox.appendChild(additionalImgContainer);
+
     hideLoadingSpinner();
+}
+
+function zoomImg() {
+    // Clone image
+    let clone = this.cloneNode();
+
+    // Append EVIL clone
+    let lb = document.querySelector("#lb-inner");
+    lb.innerHTML = "";
+    lb.appendChild(clone);
+
+    // Show
+    lb = document.querySelector("#lb-outer");
+    lb.classList.add("show");
 }
 
 // Utility functions
@@ -148,6 +197,16 @@ const loaderContainer = document.querySelector(".loader-container");
 const loaderLabel = document.querySelector(".loader-label");
 
 luckyBtn.addEventListener("click", () => showLuckyResult());
+
+// Close overlay
+document.querySelector("#lb-outer").addEventListener("click", function() {
+   this.classList.remove("show");
+});
+
+// Could also use this
+window.addEventListener("load", function() {
+
+});
 
 document.addEventListener("DOMContentLoaded", e => {
     getAllDepartments().then(r => fillDepartmentsSelect(r))

@@ -32,6 +32,10 @@ input,
 select,
 button {
     font-size: inherit;
+}
+
+input,
+select {
     margin-bottom: 20px;
 }
 
@@ -78,22 +82,30 @@ button {
     margin-top: 1em;
 }
 
+.user-input > * {
+    justify-content: center;
+}
+
 .user-input__box {
     border: 1px solid black;
     padding: 1em;
     width: fit-content;
-}
 
-
-.user-input__buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
 }
 
 .lucky-button,
 .search-button {
     padding: 0.25em 0.75em;
+}
+
+.lucky-button {
+
+}
+
+.user-input__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .object-list__box {
@@ -107,7 +119,68 @@ button {
 .object-info__box {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
+
+.object-info__object-title {
+    text-align: center;
+}
+
+.object-img--default {
+    width: 600px;
+    align-self: center;
+    cursor: pointer;
+
+}
+
+.object-info__additional-box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.object-img--additional {
+    max-height: 300px;
+    max-width: 300px;
+    cursor: pointer;
+}
+
+/* Lightbox */
+#lb-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    /* Hidden by default */
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.3s;
+}
+
+#lb-outer.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#lb-inner {
+    text-align: center; /* Horizontal center */
+    position: relative; /* Vertical center */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#lb-inner img {
+    height: auto;
+    width: auto;
+    max-height: 85vh;
+    max-width: 85vw;
+}
+
 
 /* Loader */
 .loader {
@@ -130,6 +203,10 @@ button {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

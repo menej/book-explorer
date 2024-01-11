@@ -34,6 +34,7 @@ class MuseumObject {
         artistBeginDate,    // Year the artist was born
         artistEndDate,      // Year the artist passed away
         artistWikidata_URL, // Wikidata URL for the artist
+        objectURL
     ) {
 
         this.objectID = objectID;
@@ -66,6 +67,7 @@ class MuseumObject {
         this.primaryImageSmall = primaryImageSmall;
         this.additionalImages = additionalImages;
         this.department = department;
+        this.objectURL = objectURL;
     }
 }
 
