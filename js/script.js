@@ -105,6 +105,7 @@ async function showLuckyResult() {
 
     let totalIds = objectIdsCache["total"];
     let chosenIndex = getRandomInt(totalIds);
+    // TODO: this ID causes an issue because it returns NULL, so handle it -> 488601
     let chosenId = objectIdsCache["objectIDs"][chosenIndex];
 
     let objectInfo = await getObjectInfo(chosenId);
@@ -124,6 +125,28 @@ async function showLuckyResult() {
     let objectTitle = document.createElement("h2");
     objectTitle.classList.add("object-info__object-title");
     objectTitle.textContent = museumObject.title;
+
+    // Show star if its highlight
+    if (museumObject.isHighlight) {
+        let highlightStarIcon = document.createElement("i");
+        highlightStarIcon.classList.add("fa-solid", "fa-star");
+        highlightStarIcon.style.marginLeft = ".5rem";
+        highlightStarIcon.setAttribute("title", "A popular and important artwork in the collection");
+
+        objectTitle.appendChild(highlightStarIcon);
+    }
+
+    console.log(museumObject);
+
+    // Show if its public domain
+    console.log(museumObject.isPublicDomain);
+    if (museumObject.isPublicDomain) {
+        let globeIcon = document.createElement("i");
+        globeIcon.classList.add("fa-solid", "fa-globe");
+        globeIcon.style.marginLeft = ".5rem";
+        globeIcon.setAttribute("title", "Artwork is in the Public Domain");
+        objectTitle.appendChild(globeIcon);
+    }
 
     objectInfoBox.appendChild(objectTitle)
 
@@ -156,8 +179,21 @@ async function showLuckyResult() {
 
         additionalImgContainer.appendChild(objectImage);
     }
-
     objectInfoBox.appendChild(additionalImgContainer);
+
+
+
+    // Information about object
+
+    // Artist information
+
+    // Origin of object
+
+    // Additional information
+
+    // Additional resources
+
+
 
     hideLoadingSpinner();
 }
